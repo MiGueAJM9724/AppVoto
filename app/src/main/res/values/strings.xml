@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MIIVOTO</string>
+    <string name="nombre">Nombre</string>
+    <string name="carrera">Carrera</string>
+    <string name="descripcion">Descripción</string>
+    <string name="matricula">Número de control</string>
+    <string name="candidato">Lista de candidatos</string>
+    <string name="registro">Registro</string>
+    <string name="resultado">Resultados</string>
+    <string name="candidat">Candidato</string>
+</resources>
