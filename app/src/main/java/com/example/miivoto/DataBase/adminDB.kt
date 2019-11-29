@@ -12,8 +12,7 @@ class adminDB(context: Context): SQLiteOpenHelper(context,DATABASE,null,1){
                 "sexo TEXT, id_carrera INTEGER, nip TEXT)")
         db?.execSQL("CREATE TABLE candidato(id_candidato INTEGER PRIMARY KEY,nombre Text,carrera TEXT," +
                 "descripcion TEXT,ncontrol TEXT)")
-        db?.execSQL("CREATE TABLE voto(id_voto INTEGER PRIMARY KEY, id_candidato INTEGER, ncontrol TEXT," +
-                "numero_voto INTEGER)")
+        db?.execSQL("CREATE TABLE voto(id_voto Float,id_candidato Float,nombre Text)")
     }
     fun Ejecuta(sentencia: String):Boolean{ //Función para ejecutar un Insert, update o delete
         try {

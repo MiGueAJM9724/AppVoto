@@ -21,7 +21,6 @@ import com.example.miivoto.Volley.address
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var sControl: String
     private lateinit var viewAdapter: CandidatoAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
     val candidatoList: List<candidato> = ArrayList()
@@ -35,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         getCandidatosWs()
         btnAgregarMa.setOnClickListener { startActivity(Intent(this,ActivityRegistro::class.java)) }
+        getresultadoWs()
         //Recycler View start
         viewManager = LinearLayoutManager(this)
         viewAdapter = CandidatoAdapter(
@@ -140,6 +140,31 @@ class MainActivity : AppCompatActivity() {
                         "INSERT INTO candidato(id_candidato,nombre,carrera,descripcion,ncontrol) Values('$idc','$nombre','$carrera','$descripcion','$ncontrol')"
                     var result = admin.Ejecuta(sentencia)
                     Toast.makeText(this, "Información cargada: " + result, Toast.LENGTH_SHORT).show()
+                }
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this, "Error capa8: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        )
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+    }
+    fun getresultadoWs() { //funcion que carga la informacion de MySQL a SQLite
+        val wsURL = address.IP + "Wservice/getresultado.php"
+        val admin = adminDB(this)
+        admin.Ejecuta("DELETE FROM voto")
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, wsURL, null,
+            Response.Listener { response ->
+                val succ = response["success"]
+                val msg = response["message"]
+                val resultadoJson = response.getJSONArray("voto")//name usuario (webservice)
+                for (i in 0 until resultadoJson.length()) {
+                    val id_v = resultadoJson.getJSONObject(i).getString("id_voto")
+                    val id_c = resultadoJson.getJSONObject(i).getString("id_candidato")
+                    val nombre = resultadoJson.getJSONObject(i).getString("nombre")
+                    val sentencia = "INSERT INTO voto(id_voto,id_candidato,nombre) Values($id_v,$id_c,'$nombre')"
+                    var result = admin.Ejecuta(sentencia)
+                    Toast.makeText(this, "$result", Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener { error ->
