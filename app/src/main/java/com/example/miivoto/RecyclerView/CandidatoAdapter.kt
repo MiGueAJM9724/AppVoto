@@ -38,5 +38,4 @@ class CandidatoAdapter(private var mListacandidato: List<candidato>,
             itemView.setOnClickListener{clickListener(candid)}
         }
     }
-
 }

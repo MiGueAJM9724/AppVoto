@@ -4,8 +4,10 @@
     <string name="carrera">Carrera</string>
     <string name="descripcion">Descripción</string>
     <string name="matricula">Número de control</string>
-    <string name="candidato">Lista de candidatos</string>
-    <string name="registro">Registro</string>
+    <string name="candidato">Candidatos</string>
+    <string name="registro">Registro para candidato</string>
     <string name="resultado">Resultados</string>
     <string name="candidat">Candidato</string>
+    <string name="iniciosesion">Inicio de sesión</string>
+    <string name="Registro">Registro</string>
 </resources>

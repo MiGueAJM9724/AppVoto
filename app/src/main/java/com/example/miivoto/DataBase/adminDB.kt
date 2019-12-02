@@ -8,11 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper
 class adminDB(context: Context): SQLiteOpenHelper(context,DATABASE,null,1){
     companion object{ val DATABASE = "eleccion"}
     override fun onCreate(db: SQLiteDatabase?) {//Se crea la tabla usuario, candidato y voto
-        db?.execSQL("CREATE TABLE usuario(ncontrol TEXT PRIMARY KEY, nombre_alumno TEXT," +
-                "sexo TEXT, id_carrera INTEGER, nip TEXT)")
+        db?.execSQL("CREATE TABLE usuario(ncontrol TEXT PRIMARY KEY, nip TEXT)")
         db?.execSQL("CREATE TABLE candidato(id_candidato INTEGER PRIMARY KEY,nombre Text,carrera TEXT," +
                 "descripcion TEXT,ncontrol TEXT)")
-        db?.execSQL("CREATE TABLE voto(id_voto Float,id_candidato Float,nombre Text)")
+        db?.execSQL("CREATE TABLE voto(id_voto Float,id_candidato integer,nombre Text)")
     }
     fun Ejecuta(sentencia: String):Boolean{ //Función para ejecutar un Insert, update o delete
         try {

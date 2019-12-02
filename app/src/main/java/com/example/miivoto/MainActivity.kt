@@ -29,12 +29,32 @@ class MainActivity : AppCompatActivity() {
     var carrera: String = ""
     var descrip: String = ""
     var ncontrol: String = ""
+    private lateinit var sControl : String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getCandidatosWs()
-        btnAgregarMa.setOnClickListener { startActivity(Intent(this,ActivityRegistro::class.java)) }
-        getresultadoWs()
+        val actividad = intent
+        if(actividad != null && actividad.hasExtra("ncontrol")){
+            sControl = actividad.getStringExtra("ncontrol")
+        }else {
+            val admin = adminDB(this)
+            val result = admin.Consulta("Select ncontrol from usuario")
+            if(result!!.moveToFirst()){
+                sControl = result.getString(0)
+                result.close()
+                admin.close()
+                getresultadoWs()
+            }else{
+                val actividadLog = Intent(this, ActivityLogin::class.java)
+                startActivity(actividadLog)
+                getCandidatosWs()
+                getresultadoWs()
+            }
+        }
+        btnAgregarMa.setOnClickListener {
+            startActivity(Intent(this,ActivityRegistro::class.java))
+            getCandidatosWs()
+        }
         //Recycler View start
         viewManager = LinearLayoutManager(this)
         viewAdapter = CandidatoAdapter(
@@ -139,7 +159,7 @@ class MainActivity : AppCompatActivity() {
                     val sentencia =
                         "INSERT INTO candidato(id_candidato,nombre,carrera,descripcion,ncontrol) Values('$idc','$nombre','$carrera','$descripcion','$ncontrol')"
                     var result = admin.Ejecuta(sentencia)
-                    Toast.makeText(this, "Información cargada: " + result, Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(this, "Información cargada: " + result, Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener { error ->
@@ -164,11 +184,11 @@ class MainActivity : AppCompatActivity() {
                     val nombre = resultadoJson.getJSONObject(i).getString("nombre")
                     val sentencia = "INSERT INTO voto(id_voto,id_candidato,nombre) Values($id_v,$id_c,'$nombre')"
                     var result = admin.Ejecuta(sentencia)
-                    Toast.makeText(this, "$result", Toast.LENGTH_SHORT).show()
+                   // Toast.makeText(this, "$result", Toast.LENGTH_SHORT).show()
                 }
             },
             Response.ErrorListener { error ->
-                Toast.makeText(this, "Error capa8: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error capa8: ${error.message}", Toast.LENGTH_LONG).show()
             }
         )
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)

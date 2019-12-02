@@ -12,7 +12,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.miivoto.DataBase.adminDB
 import com.example.miivoto.Volley.VolleySingleton
 import com.example.miivoto.Volley.address
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_registro.*
 import org.json.JSONObject
 
@@ -21,9 +20,10 @@ class ActivityRegistro : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
+
     }
     fun insertar(v: View){
-        if(etnombre_usuario.text!!.isEmpty() || etncontrol.text!!.isEmpty()){
+        if(etnombre_usuario.text!!.isEmpty() || etcontrolr.text!!.isEmpty()){
             Toast.makeText(this,"Complete los campos", Toast.LENGTH_SHORT).show()
             etdescripcion.requestFocus()
         }else{
@@ -31,7 +31,7 @@ class ActivityRegistro : AppCompatActivity() {
             val nombre = etnombre_usuario.text.toString()
             val carrera = etcarrera.text.toString()
             val descripcion = etdescripcion.text.toString()
-            val ncontrol = etncontrol.text.toString()
+            val ncontrol = etcontrolr.text.toString()
                 var jsonEntrada= JSONObject()
                 jsonEntrada.put("nombre",nombre)
                 jsonEntrada.put("carrera",carrera)
