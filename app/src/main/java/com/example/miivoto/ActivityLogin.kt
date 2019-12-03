@@ -38,12 +38,13 @@ class ActivityLogin : AppCompatActivity() {
     }
     fun login2(v:View) {
         val nip = etnip.text.toString()
+        val contro =etcontrolr.text.toString()
         val admin = adminDB(this)
         val result =  admin.Consulta("Select ncontrol,nip From usuario")
         if(result!!.moveToFirst()) {
             val control = result.getString(0)
             var snip = result.getString(1)
-            if (nip == snip) {
+            if (contro == control && nip == snip) {
                 val actividad = Intent(this, MainActivity::class.java)
                 actividad.putExtra("ncontrol", control)
                 startActivity(actividad)
@@ -59,7 +60,7 @@ class ActivityLogin : AppCompatActivity() {
         }
     }
     fun getuser(jsonEnt:JSONObject){
-        val wsURL = address.IP + "WService/MostrarAlumno.php"
+        val wsURL = address.IP + "Wservice/MostrarAlumno.php"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, wsURL, jsonEnt,
             Response.Listener { response ->

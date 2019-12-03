@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MIIVOTO</string>
+    <string name="Registro">Registry</string>
+    <string name="candidat">Candidate</string>
+    <string name="candidato">Candidates</string>
+    <string name="carrera">"University career "</string>
+    <string name="descripcion">Description</string>
+    <string name="encuesta">"Satisfaction survey "</string>
+    <string name="iniciosesion">Login</string>
+    <string name="matricula">"Control number "</string>
+    <string name="nombre">Name</string>
+    <string name="pregunta1">"From 1 to 10. What rating do you give the application? "</string>
+    <string name="pregunta2">"Would you recommend the application to a friend? "</string>
+    <string name="pregunta3">"Was the application navigation clear? "</string>
+    <string name="pregunta4">"What's your name? "</string>
+    <string name="registro">"Registration for candidate "</string>
+    <string name="resultado">Results</string>
+    <string name="nip">Password</string>
+</resources>

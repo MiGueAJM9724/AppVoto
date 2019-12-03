@@ -12,24 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ActivityRuser"></activity>
+        <activity android:name=".ActivityEncuesta"></activity>
+        <activity android:name=".ActivityRuser" />
         <activity
             android:name=".Activityresult"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Resultados"
+            android:label="@string/resultado"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".ActivityDetalle"
-            android:label="Detalles"
+            android:label="@string/descripcion"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".ActivityLogin" />
         <activity
             android:name=".ActivityRegistro"
-            android:label="Registro" />
+            android:label="@string/Registro" />
         <activity
-            android:name=".MainActivity"
-            android:label="@string/candidato">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

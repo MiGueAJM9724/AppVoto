@@ -41,10 +41,10 @@ class Activityresult : AppCompatActivity() {
                 labels.add(nom)
                 i++
             }while (cursor!!.moveToNext())
-            val barDataSet = BarDataSet(entries, "Votos")
+            val barDataSet = BarDataSet(entries, "Votos por candidato")
             val data = BarData(labels, barDataSet)
             barChart.data = data
-            barChart.setDescription("Votos por candidato")
+            barChart.setDescription("Candidato")
             barDataSet.color = resources.getColor(R.color.colorAccent)
             barChart.animateY(100)
         }

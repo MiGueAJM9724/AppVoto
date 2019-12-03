@@ -7,4 +7,10 @@
         app:showAsAction="always"
         android:icon="@drawable/ic_grafica"
         />
+    <item
+        android:title="Encuesta"
+        android:id="@+id/btnencuesta"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_playlist"
+        />
 </menu>

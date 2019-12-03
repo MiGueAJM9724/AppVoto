@@ -7,7 +7,13 @@
     <string name="candidato">Candidatos</string>
     <string name="registro">Registro para candidato</string>
     <string name="resultado">Resultados</string>
-    <string name="candidat">Candidato</string>
     <string name="iniciosesion">Inicio de sesión</string>
     <string name="Registro">Registro</string>
+    <string name="encuesta">Encuesta de satisfacción</string>
+    <string name="pregunta1">Del 1 al 10. ¿Qué que valoración le das a la aplicación?</string>
+    <string name="pregunta2">¿Recomendarias la aplicación a un amigo?</string>
+    <string name="pregunta3">¿La navegación de la aplicación fue clara?</string>
+    <string name="pregunta4">¿Cuál es su nombre?</string>
+    <string name="candidat">Candidato</string>
+    <string name="nip">Nip</string>
 </resources>

@@ -16,11 +16,10 @@ import kotlinx.android.synthetic.main.activity_registro.*
 import org.json.JSONObject
 
 class ActivityRegistro : AppCompatActivity() {
-    val wsInsertar = address.IP + "Wservice/insertcandidato.php"
+    val wsInsertar = address.IP + "Wservice/insertCandidato.php"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
-
     }
     fun insertar(v: View){
         if(etnombre_usuario.text!!.isEmpty() || etcontrolr.text!!.isEmpty()){
@@ -32,17 +31,17 @@ class ActivityRegistro : AppCompatActivity() {
             val carrera = etcarrera.text.toString()
             val descripcion = etdescripcion.text.toString()
             val ncontrol = etcontrolr.text.toString()
-                var jsonEntrada= JSONObject()
-                jsonEntrada.put("nombre",nombre)
-                jsonEntrada.put("carrera",carrera)
-                jsonEntrada.put("descripcion",descripcion)
-                jsonEntrada.put("ncontrol",ncontrol)
-                sendRequest(wsInsertar,jsonEntrada)
-                Toast.makeText(this,"Acción exitosa", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
-                getvoto()
-                finish()
+            var jsonEntrada= JSONObject()
+            jsonEntrada.put("nombre",nombre)
+            jsonEntrada.put("carrera",carrera)
+            jsonEntrada.put("descripcion",descripcion)
+            jsonEntrada.put("ncontrol",ncontrol)
+            sendRequest(wsInsertar,jsonEntrada)
+            Toast.makeText(this,"Acción exitosa", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            getvoto()
+            finish()
             }
         }
     fun getvoto() { //funcion que carga la informacion de MySQL a SQLite
@@ -58,9 +57,8 @@ class ActivityRegistro : AppCompatActivity() {
                 for (i in 0 until votoJson.length()) {
                     val idv = votoJson.getJSONObject(i).getString("id_voto")
                     val idc = votoJson.getJSONObject(i).getString("id_candidato")
-                    val ncontrol = votoJson.getJSONObject(i).getString("ncontrol")
-                    val voto = votoJson.getJSONObject(i).getString("numero_voto")
-                    val sentencia = "INSERT INTO voto(id_voto,id_candidato,ncontrol,numero_voto) Values('$idv','$idc','$ncontrol','$voto')"
+                    val nombre = votoJson.getJSONObject(i).getString("nombre")
+                    val sentencia = "INSERT INTO voto(id_voto,id_candidato,nombre) Values($idv,$idc,'$nombre')"
                     var result = admin.Ejecuta(sentencia)
                     //  Toast.makeText(this, "Información cargada: " + result, Toast.LENGTH_SHORT).show()
                 }

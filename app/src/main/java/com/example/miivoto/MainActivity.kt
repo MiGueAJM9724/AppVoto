@@ -141,7 +141,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getCandidatosWs() { //funcion que carga la informacion de MySQL a SQLite
-        val wsURL = address.IP + "Wservice/getcandidatos.php"
+        val wsURL = address.IP + "Wservice/getCandidatos.php"
         val admin = adminDB(this)
         admin.Ejecuta("DELETE FROM candidato")
         val jsonObjectRequest = JsonObjectRequest(
@@ -201,6 +201,10 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.btnresultado -> {
                 startActivity(Intent(this,Activityresult::class.java))
+                return true
+            }
+            R.id.btnencuesta ->{
+                startActivity(Intent(this,ActivityEncuesta::class.java))
                 return true
             }
             else -> {
